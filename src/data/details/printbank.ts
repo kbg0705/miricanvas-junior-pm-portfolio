@@ -23,7 +23,7 @@ export const printbankDetail: ProjectDetail = {
     body: '여러 채널에 흩어져 있던 운영 피드백과 개발 요청을 문제 단위로 분류했습니다. 각 문제를 개선 과제와 연결하고 기획·개발·QA 상태를 함께 관리해, 운영과 개발이 동일한 기준으로 우선순위와 진행 상황을 확인할 수 있도록 했습니다.',
     flow: ['운영 피드백', '문제 정의', '개선 과제', '개발 상태'],
     image: {
-      src: 'images/projects/printbank-npb/02-integrated-backlog.png',
+      src: 'public/images/projects/printbank-npb/02-integrated-backlog.png',
       alt: '운영 피드백을 문제 정의와 개선 과제, 개발 상태로 연결한 Printbank NPB 통합 백로그',
       caption: '운영 피드백–개선 과제–개발 상태를 연결한 통합 백로그',
       type: 'artifact',
