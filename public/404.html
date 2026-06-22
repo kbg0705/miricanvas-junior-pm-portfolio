@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Redirecting...</title>
+  </head>
+  <body>
+    <script>
+      var base = '/miricanvas-junior-pm-portfolio';
+      var path = window.location.pathname.replace(base, '') || '/';
+      var target = base + '/?redirect=' + encodeURIComponent(path + window.location.search + window.location.hash);
+      window.location.replace(target);
+    </script>
+  </body>
+</html>
