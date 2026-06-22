@@ -1,16 +1,21 @@
-import { ArrowUpRight, Download, Github, Mail } from 'lucide-react';
+import { ArrowUpRight, Github, Mail } from 'lucide-react';
+import { profile } from '../data/profile';
 
 type FooterProps = {
   email: string;
 };
 
 export function Footer({ email }: FooterProps) {
+  const copyEmail = () => {
+    void navigator.clipboard?.writeText(email);
+  };
+
   return (
     <footer className="site-footer" id="contact">
       <div className="footer-copy">
-        <p className="eyebrow">Let’s work together</p>
-        <h2>사용자의 막힘을 제품의 기회로 바꾸겠습니다.</h2>
-        <p>주니어 프로덕트 매니저 김부경입니다. 함께 이야기할 기회를 기다리겠습니다.</p>
+        <p className="eyebrow">Contact</p>
+        <h2>문제를 제품으로 바꾸는 과정이 궁금하다면 이야기 나누고 싶습니다.</h2>
+        <p>이메일과 GitHub로 연락하실 수 있습니다.</p>
       </div>
 
       <div className="footer-actions" aria-label="연락처 및 외부 링크">
@@ -24,18 +29,17 @@ export function Footer({ email }: FooterProps) {
         </a>
 
         <div className="footer-action-row">
-          <a className="footer-action footer-action--secondary" href="/resume/김부경_이력서.pdf" download>
-            <Download size={17} aria-hidden="true" />
-            이력서 다운로드
-          </a>
+          <button className="footer-action footer-action--secondary" type="button" onClick={copyEmail}>
+            이메일 복사
+          </button>
           <a
             className="footer-action footer-action--secondary"
-            href="https://github.com/kbg0705"
+            href={profile.github}
             target="_blank"
             rel="noreferrer"
           >
             <Github size={17} aria-hidden="true" />
-            GitHub
+            GitHub 보기
             <ArrowUpRight size={15} aria-hidden="true" />
           </a>
         </div>
