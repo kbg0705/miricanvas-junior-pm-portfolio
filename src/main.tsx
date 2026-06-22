@@ -2,6 +2,7 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App';
 import './styles/global.css';
+import './styles/ux-polish.css';
 
 const redirectPath = new URLSearchParams(window.location.search).get('redirect');
 
