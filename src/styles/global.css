@@ -753,3 +753,9 @@ main,
     animation-iteration-count: 1 !important;
   }
 }
+
+
+.footer-links {
+  flex-wrap: nowrap;
+  max-width: none;
+}
