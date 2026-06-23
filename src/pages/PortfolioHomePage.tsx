@@ -8,20 +8,20 @@ import { compactProjects, featuredProjects } from '../data/projects';
 
 const fitItems = [
   {
-    title: '사용자 문제 발견',
-    body: '데이터·VOC·인터뷰 기반으로 반복 문제와 사용 맥락을 정의합니다.',
+    title: '제작 과정의 사용자 막힘 발견',
+    body: '데이터·VOC·인터뷰를 통해 사용자가 작업 과정에서 멈추거나 이탈하는 지점을 발견하고 우선순위를 정합니다.',
     project: 'Printbank / NPB',
     slug: 'printbank-npb',
   },
   {
-    title: '제품 구체화',
-    body: '정책·상태·예외 케이스를 포함해 개발 가능한 요구사항으로 정리합니다.',
+    title: '복잡한 요구사항을 직관적인 흐름으로 구조화',
+    body: '다양한 사용자와 운영 조건을 정책·상태·예외 케이스로 정리해 이해하기 쉬운 제품 흐름으로 구체화합니다.',
     project: 'Magic Ecole LMS',
     slug: 'magic-ecole',
   },
   {
-    title: '실행 및 검증',
-    body: 'FO/BO 기획, 개발 협업, 지표와 사용자 반응 확인까지 연결합니다.',
+    title: '데이터와 사용자 반응으로 개선 검증',
+    body: 'FO/BO 기획과 개발 협업 이후 지표와 사용자 반응을 확인하며 다음 개선 방향을 도출합니다.',
     project: 'PrintStudio',
     slug: 'print-studio',
   },
