@@ -18,7 +18,8 @@ export const careerSummary: CareerEntry[] = [
     role: '인쇄 이커머스 서비스 기획 · PM',
     summary: 'FO·BO 기능 개선, 신규 서비스 구축, 데이터 및 VOC 기반 제품 개선',
     projects: [
-      { label: 'Printbank / NPB', slug: 'printbank-npb' },
+      { label: 'NPB', slug: 'printbank-npb' },
+      { label: 'Printbank Main Renewal', slug: 'printbank-main' },
       { label: 'PrintStudio', slug: 'print-studio' },
     ],
   },
