@@ -5,6 +5,7 @@ import './styles/global.css';
 import './styles/portfolio.css';
 import './styles/backlog.css';
 import './styles/career.css';
+import './styles/single-page.css';
 
 const redirectPath = new URLSearchParams(window.location.search).get('redirect');
 if (redirectPath) {
