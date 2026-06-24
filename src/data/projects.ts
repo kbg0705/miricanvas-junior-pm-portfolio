@@ -177,11 +177,6 @@ export const compactProjects: Project[] = [
   { slug: 'picar-ar-sns', order: 10, tier: 'compact', service: 'PICAR', category: ['Product', 'Academic'], title: '위치 기반 AR 길찾기 및 SNS', tagline: '장소 탐색부터 포즈 재현과 공유까지 하나의 촬영 경험으로 연결했습니다.', period: 'Graduation Project', role: '서비스 기획 · 구현', contribution: 'AR UX · 위치 기반 흐름 · SNS 구조', status: '졸업 프로젝트 완료', tools: ['AR', 'Location API', 'Mobile UX'], tags: ['AR', 'Location', 'SNS', 'UX'], problem: '촬영 장소와 포즈를 찾고 결과를 공유하는 과정이 여러 서비스에 나뉘어 있었습니다.', decision: 'AR 길찾기, 투명도 포즈 가이드, 촬영 결과 공유를 하나의 흐름으로 설계했습니다.', impact: [{ value: 'Prototype', label: '위치 기반 AR SNS 구현', description: '졸업 프로젝트', type: 'delivered' }], detailPageEnabled: false, description: '위치 기반 AR 길찾기, 촬영 포즈 투명도 가이드, 촬영 결과 공유 SNS 흐름을 설계하고 구현한 졸업 프로젝트입니다.' },
 ];
 
-export const archiveProjects: Project[] = [
-  { slug: 'recommendation', order: 11, tier: 'archive', service: 'Recommendation System', category: ['AI & Search', 'Academic'], title: '콘텐츠 추천 시스템', tagline: '추천 기준과 콜드스타트 문제를 코드로 학습했습니다.', period: 'Undergraduate Project', role: '데이터 분석 · 구현', contribution: '추천 로직 구현', status: '학업 프로젝트', tools: ['Python'], tags: ['Python', 'Recommendation', 'Data'], problem: '제한된 정보에서 추천 기준을 비교할 필요가 있었습니다.', decision: '사용자 특성과 콘텐츠 속성을 활용한 영화·웹툰 추천 로직을 구현했습니다.', impact: [{ value: 'Model', label: '추천 로직 구현', description: '학업 프로젝트', type: 'delivered' }], detailPageEnabled: false, description: 'Python으로 사용자 특성과 콘텐츠 속성 기반 추천 로직을 구현하고 콜드스타트와 추천 기준의 차이를 학습했습니다.' },
-  { slug: 'hci-vr', order: 12, tier: 'archive', service: 'HCI Research Lab', category: ['Research', 'Academic'], title: 'VR 사용성 연구', tagline: '사용자 관찰과 정성·정량 조사를 연구 현장에서 경험했습니다.', period: 'Research Experience', role: 'HCI 연구실 RA', contribution: '사용자 관찰 · 연구 지원 · 학술 활동', status: '연구 경험', tools: ['User Research', 'VR'], tags: ['HCI', 'VR', 'User Research'], problem: 'VR 환경의 행동과 사용성 이슈를 기록할 필요가 있었습니다.', decision: '사용자 관찰과 정성·정량 조사 및 학술 활동을 지원했습니다.', impact: [{ value: 'RA', label: 'VR 사용성 연구 지원', description: '공개 자료가 없어 텍스트 중심 제공', type: 'delivered' }], detailPageEnabled: false, description: 'HCI 연구실 RA로 사용자 관찰, VR 사용성 연구, 정성·정량 조사와 학술 활동을 지원했습니다.' },
-];
-
 const coverImages: Record<string, string> = {
   'printbank-npb': 'public/images/projects/printbank-npb/01-cover.png',
   'printbank-main': 'public/images/projects/printbank-main/01-cover.png',
@@ -196,7 +191,7 @@ const coverImages: Record<string, string> = {
   'picar-ar-sns': 'public/images/projects/PICAR/01-cover.png',
 };
 
-const allProjects = [...featuredProjects, ...compactProjects, ...archiveProjects];
+const allProjects = [...featuredProjects, ...compactProjects];
 
 const affiliations: Record<string, string> = {
   'printbank-npb': '(주)프린트뱅크',
@@ -210,8 +205,6 @@ const affiliations: Record<string, string> = {
   'smooth-route': '팁스터 연합동아리',
   'my-ai-service-business': '이화여자대학교 디자인대학원',
   'picar-ar-sns': '가천대학교 졸업 프로젝트',
-  recommendation: '가천대학교 학부 프로젝트',
-  'hci-vr': '가천대학교 HCI 연구실',
 };
 
 allProjects.forEach((project, index) => {

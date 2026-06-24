@@ -12,8 +12,6 @@ const academicProjectSlugs = new Set([
   'smooth-route',
   'my-ai-service-business',
   'picar-ar-sns',
-  'recommendation',
-  'hci-vr',
 ]);
 
 export function WorkPage() {
@@ -26,10 +24,9 @@ export function WorkPage() {
     <>
       <Header />
       <main className="page-shell">
-        <header className="page-hero">
-          <p className="eyebrow">All Work</p>
-          <h1>문제 유형과 제품 단계에 따라 프로젝트를 탐색하세요.</h1>
-          <p>문제 정의부터 제품 판단, 실행 결과까지 프로젝트별 핵심 내용을 한눈에 확인할 수 있습니다.</p>
+        <header className="metric-hero">
+          <strong>{projects.length}</strong>
+          <div><span>Projects</span><p>{practicalProjects.length}개 실무 · {academicProjects.length}개 학부 및 대학원</p></div>
         </header>
         <div className="filter-bar" aria-label="프로젝트 필터">
           {projectCategories.map((category) => <button type="button" key={category} aria-pressed={filter === category} onClick={() => setFilter(category)}>{category}</button>)}

@@ -10,8 +10,7 @@ export function AboutPage() {
       <Header />
       <main className="page-shell about-page">
         <header className="about-hero">
-          <p className="eyebrow">About</p>
-          <h1>운영의 복잡함을<br />사용자가 이해할 수 있는 제품 기준으로 바꿉니다.</h1>
+          <div className="about-hero__metric"><strong>2년 7개월</strong><span>Product Experience</span></div>
           <p>{profile.summary}</p>
           <div className="hero-actions">
             <Link className="primary-action" to="/contact">연락하기 <Mail size={18} /></Link>
@@ -20,7 +19,7 @@ export function AboutPage() {
         </header>
 
         <section className="about-proof" aria-label="경력 요약">
-          <div><strong>2년 7개월</strong><span>총 실무 경험</span></div>
+          <div><strong>3</strong><span>제품 조직 경험</span></div>
           <div><strong>14</strong><span>Sprint 운영</span></div>
           <div><strong>4.29</strong><span>학부 GPA / 4.5</span></div>
           <div><strong>2026</strong><span>서비스디자인 석사과정</span></div>

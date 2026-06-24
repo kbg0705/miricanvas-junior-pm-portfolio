@@ -156,6 +156,11 @@ button.image-placeholder.has-image{
 .home-main>.home-hero{grid-template-columns:minmax(0,820px)}
 
 .work-list{padding:64px 0 100px;border-top:1px solid var(--p-line)}
+.metric-hero{display:flex;align-items:flex-end;gap:30px;padding:86px 0 72px}
+.metric-hero>strong{color:var(--p-accent);font-size:128px;line-height:.8}
+.metric-hero>div{display:grid;gap:10px;padding-bottom:4px}
+.metric-hero span{font-size:32px;font-weight:800}
+.metric-hero p{margin:0;color:var(--p-muted);font-size:15px}
 .work-list__heading{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:48px;align-items:end;margin-bottom:36px}
 .work-list__heading h2{margin:10px 0 0;font-size:42px}
 .work-list__heading>p{margin:0;color:var(--p-muted);line-height:1.7}
@@ -305,7 +310,9 @@ button.image-placeholder.has-image{
 
 /* Renewed about */
 .about-hero{max-width:980px;padding:96px 0 86px}
-.about-hero h1{margin:20px 0 28px;font-size:64px;line-height:1.12}
+.about-hero__metric{display:flex;align-items:flex-end;gap:24px;margin-bottom:34px}
+.about-hero__metric strong{color:var(--p-accent);font-size:84px;line-height:.95}
+.about-hero__metric span{padding-bottom:8px;font-size:24px;font-weight:800}
 .about-hero>p:not(.eyebrow){max-width:760px;color:var(--p-muted);font-size:19px;line-height:1.85}
 .about-proof{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-block:1px solid var(--p-line)}
 .about-proof div{min-height:150px;padding:26px;border-right:1px solid var(--p-line)}
@@ -362,7 +369,8 @@ button.image-placeholder.has-image{
   .case-summary__problem p{font-size:22px}
   .detail-section .section-heading h2{font-size:36px}
   .decision-item--renewed .decision-flow{grid-template-columns:1fr}
-  .about-hero h1{font-size:48px}
+  .metric-hero>strong{font-size:104px}
+  .about-hero__metric strong{font-size:68px}
   .about-proof{grid-template-columns:repeat(2,minmax(0,1fr))}
   .about-proof div:nth-child(2){border-right:0}
   .about-proof div:nth-child(-n+2){border-bottom:1px solid var(--p-line)}
