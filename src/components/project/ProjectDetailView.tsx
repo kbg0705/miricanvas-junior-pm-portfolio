@@ -17,6 +17,18 @@ export const detailSections = [
   'learnings',
 ] as const;
 
+const sectionLabels: Record<(typeof detailSections)[number], string> = {
+  summary: '핵심 요약',
+  context: '문제 맥락',
+  evidence: '발견 근거',
+  'feedback-backlog': '백로그',
+  decisions: '제품 결정',
+  artifacts: '산출물',
+  collaboration: '협업',
+  outcomes: '성과',
+  learnings: '회고',
+};
+
 const outcomeLabels = {
   measured: '실제 측정',
   delivered: '출시·산출물',
@@ -40,15 +52,13 @@ export function ProjectDetailView({
   const overview = [
     ['Period', project.period],
     ['Role', project.role],
-    ['Contribution', project.contribution],
     ['Team', project.team ?? '프로젝트별 협업'],
     ['Status', project.status],
-    ['Tools', project.tools.join(' · ')],
   ];
 
   return (
     <>
-      <header className="detail-hero">
+      <header className="detail-hero detail-hero--renewed">
         <Link to="/work" className="back-link"><ArrowLeft size={17} /> 전체 프로젝트</Link>
         <div className="detail-hero__grid">
           <div>
@@ -56,13 +66,16 @@ export function ProjectDetailView({
             <p className="detail-service">{project.service}</p>
             <h1>{project.title}</h1>
             <p className="detail-tagline">{project.tagline}</p>
-            <div className="tag-list">{project.tags.map((tag) => <span className="tag" key={tag}>{tag}</span>)}</div>
+            <div className="detail-contribution">
+              <span>My contribution</span>
+              <p>{project.contribution}</p>
+            </div>
           </div>
           {project.thumbnail?.src ? <ImagePlaceholder image={project.thumbnail} onOpen={() => onOpen(project.thumbnail!)} /> : null}
         </div>
       </header>
 
-      <section className="glance-grid" aria-label="프로젝트 개요">
+      <section className="project-facts" aria-label="프로젝트 개요">
         {overview.map(([label, value]) => <div key={label}><span>{label}</span><p>{value}</p></div>)}
       </section>
 
@@ -72,15 +85,15 @@ export function ProjectDetailView({
           {detailSections
             .filter((id) => id !== 'feedback-backlog' || hasFeedbackBacklog)
             .filter((id) => id !== 'artifacts' || artifacts.length > 0)
-            .map((id) => <a key={id} href={`#${id}`} aria-current={active === id ? 'location' : undefined}><i />{id}</a>)}
+            .map((id) => <a key={id} href={`#${id}`} aria-current={active === id ? 'location' : undefined}><i />{sectionLabels[id]}</a>)}
         </nav>
 
         <div className="detail-content">
-          <Section id="summary" eyebrow="At a glance" title="문제, 판단, 결과">
-            <div className="summary-grid">
-              <Summary label="Problem" text={detail.executiveSummary.problem} />
-              <Summary label="Decision" text={detail.executiveSummary.decision} />
-              <Summary label="Outcome" text={detail.executiveSummary.outcome} />
+          <Section id="summary" eyebrow="Case Summary" title="문제에서 결과까지">
+            <div className="case-summary">
+              <article className="case-summary__problem"><span>Problem</span><p>{detail.executiveSummary.problem}</p></article>
+              <article><span>Decision</span><p>{detail.executiveSummary.decision}</p></article>
+              <article><span>Outcome</span><p>{detail.executiveSummary.outcome}</p></article>
             </div>
           </Section>
 
@@ -95,7 +108,7 @@ export function ProjectDetailView({
           </Section>
 
           {hasFeedbackBacklog && detail.feedbackBacklog ? (
-            <Section id="feedback-backlog" eyebrow="From Feedback to Product Backlog" title={detail.feedbackBacklog.subtitle} wide>
+            <Section id="feedback-backlog" eyebrow="From feedback to backlog" title={detail.feedbackBacklog.subtitle}>
               <div className="backlog-feature">
                 <div className="backlog-feature__copy">
                   <h3>{detail.feedbackBacklog.title}</h3>
@@ -117,16 +130,16 @@ export function ProjectDetailView({
 
           <blockquote className="key-question"><span>Key Question</span><p>{detail.keyQuestion}</p></blockquote>
 
-          <Section id="decisions" eyebrow="Product Decisions" title="근거를 제품 결정으로 전환한 과정" wide>
+          <Section id="decisions" eyebrow="Product Decisions" title="근거를 제품 결정으로 전환한 과정">
             <div className="decision-list">
               {detail.decisions.map((item) => (
-                <article className="decision-item" key={item.number}>
+                <article className="decision-item decision-item--renewed" key={item.number}>
                   <b>{item.number}</b>
-                  <div>
+                  <div className="decision-item__body">
                     <h3>{item.title}</h3>
+                    <div className="decision-takeaway"><span>Decision</span><p>{item.decision}</p></div>
                     <div className="decision-flow">
                       <Fact label="Evidence" text={item.evidence} />
-                      <Fact label="Decision" text={item.decision} />
                       <Fact label="Product Specification" text={item.specification} />
                       <Fact label="Effect" text={item.effect} />
                     </div>
@@ -138,7 +151,7 @@ export function ProjectDetailView({
           </Section>
 
           {artifacts.length > 0 ? (
-            <Section id="artifacts" eyebrow="From policy to product" title="정책과 산출물" wide>
+            <Section id="artifacts" eyebrow="From policy to product" title="정책과 산출물">
               <div className="artifact-grid">
                 {artifacts.map((image) => <figure key={image.placeholderTitle}><ImagePlaceholder image={image} onOpen={() => onOpen(image)} /><figcaption>{image.caption}</figcaption></figure>)}
               </div>
@@ -149,7 +162,7 @@ export function ProjectDetailView({
             <ol className="text-list">{detail.collaboration.map((item) => <li key={item}>{item}</li>)}</ol>
           </Section>
 
-          <Section id="outcomes" eyebrow="Outcome" title="성과 유형을 구분해 표시했습니다">
+          <Section id="outcomes" eyebrow="Outcome" title="성과를 유형별로 구분했습니다">
             <div className="outcome-grid">
               {detail.outcomes.map((item) => <article key={item.label} data-type={item.type}><span>{outcomeLabels[item.type]}</span><strong>{item.value}</strong><h3>{item.label}</h3><p>{item.description}</p></article>)}
             </div>
@@ -172,12 +185,8 @@ export function ProjectDetailView({
   );
 }
 
-function Section({ id, eyebrow, title, wide, children }: { id: string; eyebrow: string; title: string; wide?: boolean; children: ReactNode }) {
-  return <section id={id} className={`detail-section${wide ? ' detail-section--wide' : ''}`}><div className="section-heading"><p className="eyebrow">{eyebrow}</p><h2>{title}</h2></div>{children}</section>;
-}
-
-function Summary({ label, text }: { label: string; text: string }) {
-  return <article><span>{label}</span><p>{text}</p></article>;
+function Section({ id, eyebrow, title, children }: { id: string; eyebrow: string; title: string; children: ReactNode }) {
+  return <section id={id} className="detail-section"><div className="section-heading"><p className="eyebrow">{eyebrow}</p><h2>{title}</h2></div>{children}</section>;
 }
 
 function Fact({ label, text }: { label: string; text: string }) {
