@@ -200,6 +200,7 @@ const allProjects = [...featuredProjects, ...compactProjects, ...archiveProjects
 
 allProjects.forEach((project, index) => {
   project.order = index + 1;
+  project.detailPageEnabled = true;
   const src = coverImages[project.slug];
   if (!src) return;
   project.thumbnail = project.thumbnail ?? image('cover', project.title, project.tagline);

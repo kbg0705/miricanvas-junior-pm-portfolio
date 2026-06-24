@@ -1,7 +1,7 @@
 import type { ProjectDetail, ProjectImage } from '../types/project';
-import { featuredProjects } from './projects';
+import { projects } from './projects';
 
-const project = (slug: string) => featuredProjects.find((item) => item.slug === slug)!;
+const project = (slug: string) => projects.find((item) => item.slug === slug)!;
 
 const asset = (
   type: ProjectImage['type'],
@@ -451,4 +451,72 @@ export const projectDetails: ProjectDetail[] = [
   },
 ];
 
-export const findProjectDetail = (slug?: string) => projectDetails.find((detail) => detail.slug === slug);
+const makeProjectDetail = (slug: string): ProjectDetail | undefined => {
+  const current = projects.find((item) => item.slug === slug);
+  if (!current) return undefined;
+  const index = projects.findIndex((item) => item.slug === slug);
+  const evidence = [
+    { label: '문제 정의', description: current.problem },
+    { label: '제품 판단', description: current.decision },
+    { label: '역할과 범위', description: `${current.role}로서 ${current.contribution}을 수행했습니다.` },
+  ];
+
+  return {
+    slug: current.slug,
+    overview: current.description ?? current.tagline,
+    context: `${current.problem} 이를 해결하기 위해 프로젝트의 범위를 정하고 실행 가능한 제품 기준으로 구체화했습니다.`,
+    executiveSummary: {
+      problem: current.problem,
+      decision: current.decision,
+      outcome: current.impact.map((item) => `${item.value} ${item.label}`).join(', '),
+    },
+    evidence,
+    keyQuestion: `${current.problem.replace(/[.!?]$/, '')} 문제를 어떤 제품 구조와 실행 기준으로 해결할 수 있을까?`,
+    decisions: [
+      {
+        number: '01',
+        title: '문제를 실행 가능한 범위로 구조화',
+        evidence: current.problem,
+        decision: current.decision,
+        specification: `${current.contribution}을 중심으로 요구사항과 결과물을 정리했습니다.`,
+        effect: current.impact[0]?.description ?? '프로젝트의 핵심 결과물을 완성했습니다.',
+      },
+      {
+        number: '02',
+        title: '결과를 검증 가능한 산출물로 연결',
+        evidence: `프로젝트 상태와 성공 기준을 ${current.status} 단계에 맞춰 구분할 필요가 있었습니다.`,
+        decision: '실제 산출물, 측정 결과, 외부 선정, 시뮬레이션을 구분해 결과를 기록했습니다.',
+        specification: `${current.tools.join(' · ')}을 활용해 기획과 검증 과정을 연결했습니다.`,
+        effect: current.impact.map((item) => item.label).join(', '),
+      },
+    ],
+    artifacts: [],
+    collaboration: [
+      `${current.role} 역할로 프로젝트의 문제와 범위를 정리했습니다.`,
+      `${current.contribution}을 기준으로 협업 결과물을 만들었습니다.`,
+      `${current.tools.join(', ')}을 활용해 실행과 검증 과정을 관리했습니다.`,
+    ],
+    outcomes: current.impact,
+    learnings: [
+      '문제의 크기보다 사용자가 실제로 막히는 순간과 원인을 먼저 확인해야 합니다.',
+      '결과는 실제 측정, 산출물, 외부 인정, 예측값을 구분해 전달해야 합니다.',
+      '다음 단계에서는 더 많은 사용자 데이터와 반복 검증으로 판단의 정확도를 높일 수 있습니다.',
+    ],
+    images: [],
+    previousProject: projects[index - 1]?.slug,
+    nextProject: projects[index + 1]?.slug,
+  };
+};
+
+export const findProjectDetail = (slug?: string) => {
+  if (!slug) return undefined;
+  const index = projects.findIndex((item) => item.slug === slug);
+  const detail = projectDetails.find((item) => item.slug === slug) ?? makeProjectDetail(slug);
+  if (!detail) return undefined;
+
+  return {
+    ...detail,
+    previousProject: projects[index - 1]?.slug,
+    nextProject: projects[index + 1]?.slug,
+  };
+};

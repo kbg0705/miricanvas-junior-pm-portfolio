@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 
 const navItems = [
@@ -10,6 +10,7 @@ const navItems = [
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const headerRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const updateScrolled = () => setIsScrolled(window.scrollY >= 50);
@@ -20,8 +21,26 @@ export function Header() {
     return () => window.removeEventListener('scroll', updateScrolled);
   }, []);
 
+  useEffect(() => {
+    const header = headerRef.current;
+    if (!header) return undefined;
+
+    const syncHeaderHeight = () => {
+      document.documentElement.style.setProperty('--p-header-current', `${header.offsetHeight}px`);
+    };
+    const observer = new ResizeObserver(syncHeaderHeight);
+
+    syncHeaderHeight();
+    observer.observe(header);
+
+    return () => {
+      observer.disconnect();
+      document.documentElement.style.removeProperty('--p-header-current');
+    };
+  }, []);
+
   return (
-    <header className={`site-header${isScrolled ? ' is-scrolled' : ''}`}>
+    <header ref={headerRef} className={`site-header${isScrolled ? ' is-scrolled' : ''}`}>
       <Link className="brand-lockup" to="/">
         <strong>KB.</strong>
         <span>KIM BUGYEONG / PRODUCT MANAGER</span>
