@@ -6,25 +6,48 @@ export const featuredProjects: Project[] = [
     slug: 'printbank-npb',
     order: 1,
     tier: 'featured',
-    service: 'Printbank / NPB',
+    service: 'New Printbank Project',
     category: ['Product', 'E-commerce'],
-    title: '인쇄 이커머스 제품 개선',
+    title: 'New Printbank 제품 운영 체계 구축',
     tagline: '흩어진 운영 이슈를 우선순위가 있는 제품 개선 체계로 전환했습니다.',
     period: '2026.02–2026.06',
     role: '서비스 기획 · Product Manager',
     contribution: '문제 구조화 · 정책 설계 · 화면정의 · 개발 협의 · QA',
     status: '기획·개발·QA 병행',
-    tools: ['Figma', 'Jira', 'GA4', 'Google Sheets', 'SQL/DB 구조 협의'],
-    tags: ['FO/BO', 'Product Operations', 'Policy', 'GA4'],
+    tools: ['Figma', 'Jira', 'Google Sheets', 'SQL/DB 구조 협의'],
+    tags: ['FO/BO', 'Product Operations', 'Policy', 'Backlog'],
     problem: '회원·주문·배송·CS 기능의 상태 체계와 운영 기준이 불명확해 운영자가 수작업으로 공백을 보완했습니다.',
     decision: '운영 피드백을 FD 문제 정의와 RP 개선 과제로 구조화하고 상태·조건·예외·우선순위를 정책으로 만들었습니다.',
     impact: [
-      { value: '1.7×', label: '메인페이지 평균 참여시간 증가', description: '1분 14초에서 2분 8초로 증가', type: 'measured' },
       { value: 'FO·BO', label: '개선 과제 개발·QA 연결', description: '회원·주문·배송·CS 관련 과제', type: 'delivered' },
       { value: 'One System', label: '문제와 개발 상태 관리 기준 통합', description: '운영·기획·개발 공통 기준', type: 'delivered' },
     ],
     detailPageEnabled: true,
     thumbnail: { ...image('cover', '비식별화된 제품 개선 시스템', '권장 비율 16:10 · FD·RP 백로그와 FO·BO 정책 연결을 보여주는 화면'), isConfidential: true },
+  },
+  {
+    slug: 'printbank-main',
+    order: 2,
+    tier: 'featured',
+    service: 'Printbank',
+    category: ['Product', 'E-commerce'],
+    title: 'Printbank 메인페이지 리뉴얼',
+    tagline: '주문조회 중심의 방문 흐름을 상품 탐색과 상담으로 이어지는 메인 경험으로 바꿨습니다.',
+    period: '2025.07–2025.09',
+    role: '서비스 기획',
+    contribution: 'GA4 분석 · 문제 정의 · 정보 우선순위 · 화면 기획 · 디자이너 협업',
+    status: '출시 및 지표 검증 완료',
+    tools: ['GA4', 'Figma', 'Google Sheets'],
+    tags: ['GA4', 'Homepage', 'E-commerce', 'UX Improvement'],
+    problem: '주문조회 페이지에 방문이 집중되고 메인 배너와 신상품 콘텐츠의 탐색 성과가 낮았습니다.',
+    decision: '메인 배너의 주목도를 높이고 팝업의 방해를 줄이며 상담 진입점을 고정해 메인페이지의 역할을 재정의했습니다.',
+    impact: [
+      { value: '1.7×', label: '평균 참여시간 증가', description: '1분 14초에서 2분 8초로 증가', type: 'measured' },
+      { value: '1위', label: '전체 접속 페이지 순위', description: '메인페이지가 주문조회 페이지를 넘어 1위 달성', type: 'measured' },
+      { value: 'Launch', label: '메인페이지 리뉴얼 출시', description: '배너·팝업·상담 진입 구조 개선', type: 'delivered' },
+    ],
+    detailPageEnabled: true,
+    thumbnail: image('cover', 'Printbank 메인페이지 리뉴얼', '권장 비율 16:10 · 배너, 팝업, 상담 진입 구조를 개선한 메인 화면'),
   },
   {
     slug: 'magic-ecole',
@@ -161,6 +184,7 @@ export const archiveProjects: Project[] = [
 
 const coverImages: Record<string, string> = {
   'printbank-npb': 'public/images/projects/printbank-npb/01-cover.png',
+  'printbank-main': 'public/images/projects/printbank-main/01-cover.png',
   'tax-canvas': 'public/images/projects/tax-canvas/01-cover.png',
   'print-studio': 'public/images/projects/print-studio/01-cover.png',
   'print-decision-support': 'public/images/projects/print-decision-support/01-cover.png',
@@ -170,12 +194,15 @@ const coverImages: Record<string, string> = {
   'picar-ar-sns': 'public/images/projects/PICAR/01-cover.png',
 };
 
-[...featuredProjects, ...compactProjects, ...archiveProjects].forEach((project) => {
+const allProjects = [...featuredProjects, ...compactProjects, ...archiveProjects];
+
+allProjects.forEach((project, index) => {
+  project.order = index + 1;
   const src = coverImages[project.slug];
   if (!src) return;
   project.thumbnail = project.thumbnail ?? image('cover', project.title, project.tagline);
   project.thumbnail.src = src;
 });
 
-export const projects = [...featuredProjects, ...compactProjects, ...archiveProjects];
+export const projects = allProjects;
 export const findProject = (slug?: string) => projects.find((project) => project.slug === slug);
