@@ -183,3 +183,41 @@ button.image-placeholder.has-image{
 @media (min-width:1024px) and (max-width:1180px){
   .work-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
+
+.detail-layout{
+  grid-template-columns:190px minmax(0,1fr);
+  gap:56px;
+}
+
+.detail-toc{
+  padding-right:24px;
+  border-right:1px solid var(--p-line);
+}
+
+.detail-content{min-width:0}
+
+.detail-section--wide{
+  width:100%;
+  margin-left:0;
+}
+
+@media (min-width:1024px) and (max-width:1180px){
+  .detail-layout{
+    grid-template-columns:160px minmax(0,1fr);
+    gap:36px;
+  }
+
+  .detail-toc{padding-right:18px}
+
+  .decision-item{
+    grid-template-columns:44px minmax(0,1fr);
+    gap:24px;
+  }
+
+  .decision-item>.image-placeholder{
+    grid-column:2;
+    min-width:0;
+  }
+
+  .artifact-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
