@@ -33,7 +33,7 @@ const sectionLabels: Record<(typeof detailSections)[number], string> = {
 
 const outcomeLabels = {
   measured: '실제 측정',
-  delivered: '출시·산출물',
+  delivered: '완료·산출물',
   recognition: '외부 선정',
   simulated: 'AI 예측·시뮬레이션',
 };
@@ -183,6 +183,10 @@ export function ProjectDetailView({
           </Section>
 
           <Section id="outcomes" eyebrow="Outcome" title="성과를 유형별로 구분했습니다">
+            <div className="validation-status" data-status={project.validation.status}>
+              <span>{project.validation.label}</span>
+              <p>{project.validation.evidence}</p>
+            </div>
             <div className="outcome-grid">
               {detail.outcomes.map((item) => <article key={item.label} data-type={item.type}><span>{outcomeLabels[item.type]}</span><strong>{item.value}</strong><h3>{item.label}</h3><p>{item.description}</p></article>)}
             </div>

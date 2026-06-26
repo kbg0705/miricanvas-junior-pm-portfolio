@@ -1,6 +1,7 @@
 export type ProjectTier = 'featured' | 'compact' | 'archive';
 export type OutcomeType = 'measured' | 'delivered' | 'recognition' | 'simulated';
 export type ImageKind = 'cover' | 'evidence' | 'decision' | 'product' | 'artifact' | 'outcome';
+export type ValidationStatus = 'quantitative' | 'qualitative' | 'implemented' | 'plannedAndQa' | 'pending';
 
 export type ProjectImage = {
   src?: string;
@@ -18,6 +19,12 @@ export type Outcome = {
   label: string;
   description: string;
   type: OutcomeType;
+};
+
+export type Validation = {
+  status: ValidationStatus;
+  label: string;
+  evidence: string;
 };
 
 export type Evidence = {
@@ -62,6 +69,7 @@ export type Project = {
   problem: string;
   decision: string;
   impact: Outcome[];
+  validation: Validation;
   detailPageEnabled: boolean;
   description?: string;
 };

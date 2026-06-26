@@ -312,6 +312,9 @@ button.image-placeholder.has-image{
 .decision-item--renewed .decision-flow div{padding:18px;border-top:2px solid var(--p-text);background:#fafafd}
 .decision-item--renewed .decision-flow p{margin-bottom:0}
 .decision-item--renewed>.image-placeholder{grid-column:2;max-width:720px}
+.validation-status{display:grid;grid-template-columns:180px minmax(0,1fr);gap:18px;align-items:start;margin-bottom:18px;padding:18px 20px;border:1px solid var(--p-line);border-left:4px solid var(--p-accent);border-radius:8px;background:#fff}
+.validation-status span{color:var(--p-accent);font-size:13px;font-weight:850;line-height:1.45}
+.validation-status p{margin:0;color:var(--p-muted);line-height:1.65;word-break:keep-all}
 .outcome-grid article{background:#fff}
 .outcome-grid strong{font-size:38px}
 
@@ -388,6 +391,7 @@ button.image-placeholder.has-image{
   .detail-section .section-heading h2{font-size:36px}
   .key-decision-grid{grid-template-columns:1fr}
   .key-decision-grid article{min-height:0}
+  .validation-status{grid-template-columns:1fr;gap:8px}
   .decision-item--renewed .decision-flow{grid-template-columns:1fr}
   .metric-hero>strong{font-size:104px}
   .about-hero__metric strong{font-size:68px}
@@ -438,6 +442,7 @@ button.image-placeholder.has-image{
   .detail-layout--key-decisions .detail-toc a{min-height:34px;padding:0 10px;border:1px solid var(--p-line);border-radius:999px;background:#fff}
   .key-decision-grid{grid-template-columns:1fr}
   .key-decision-grid article{min-height:0}
+  .validation-status{grid-template-columns:1fr;gap:8px}
   .compact-grid,.home-featured-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   .site-footer{grid-template-columns:1fr}
 }
