@@ -79,7 +79,21 @@ export const profile = {
     { period: '2024.06', name: '정보처리기사', issuer: '한국산업인력공단' },
   ],
   activities: [
-    { period: '2026.06', name: '한국서비스디자인학회 춘계 학술대회 발표', detail: '다중 옵션 상품의 고객 의사결정 지원 연구' },
+    {
+      period: '2026.06',
+      name: '한국서비스디자인학회 춘계 학술대회 발표',
+      detail: '다중 옵션 상품의 고객 의사결정 지원 연구',
+      links: [
+        {
+          label: '학술대회자료집',
+          href: 'https://www.servicedesigncouncil.kr/subList/32000002833?journalCd=3431',
+        },
+        {
+          label: '원문 보기',
+          href: 'https://scholar.kyobobook.co.kr/builderDownload?artId=16618547&barcode=4010072080750&kyoboKey=YnVpbGRlcjIwMjAhQCMk&gb=view',
+        },
+      ],
+    },
     { period: '2025.05 - 2025.06', name: 'AI·데이터 기반 UX 기획 및 검증', detail: '팁스터 프로젝트' },
     { period: '2024.04 - 2024.07', name: 'Tax Canvas', detail: '생성형 AI 세무 서비스 PM' },
   ],

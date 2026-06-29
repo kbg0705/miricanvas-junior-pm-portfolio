@@ -381,6 +381,9 @@ button.image-placeholder.has-image{
 .about-records article span{color:var(--p-muted);font-size:12px;font-weight:750}
 .about-records article strong{font-size:17px;line-height:1.5}
 .about-records article p{margin:0;color:var(--p-muted);font-size:14px;line-height:1.6}
+.record-links{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+.record-links a{display:inline-flex;align-items:center;gap:4px;min-height:30px;padding:0 9px;border:1px solid var(--p-line);border-radius:999px;color:var(--p-accent);font-size:13px;font-weight:760}
+.record-links svg{flex:0 0 auto}
 
 @media (min-width:1024px) and (max-width:1180px){
   .detail-hero--renewed h1{font-size:48px}

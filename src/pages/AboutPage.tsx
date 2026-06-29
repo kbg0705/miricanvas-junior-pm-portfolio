@@ -1,4 +1,4 @@
-import { ArrowRight, Mail } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, Mail } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Footer } from '../components/Footer';
 import { Header } from '../components/Header';
@@ -77,7 +77,19 @@ export function AboutPage() {
   );
 }
 
-function RecordGroup({ title, items }: { title: string; items: Array<{ period: string; name: string; detail?: string; issuer?: string }> }) {
+function RecordGroup({
+  title,
+  items,
+}: {
+  title: string;
+  items: Array<{
+    period: string;
+    name: string;
+    detail?: string;
+    issuer?: string;
+    links?: Array<{ label: string; href: string }>;
+  }>;
+}) {
   return (
     <section>
       <p className="eyebrow">{title}</p>
@@ -87,6 +99,15 @@ function RecordGroup({ title, items }: { title: string; items: Array<{ period: s
             <span>{item.period}</span>
             <strong>{item.name}</strong>
             <p>{item.detail ?? item.issuer}</p>
+            {item.links?.length ? (
+              <div className="record-links">
+                {item.links.map((link) => (
+                  <a key={link.href} href={link.href} target="_blank" rel="noreferrer">
+                    {link.label} <ArrowUpRight aria-hidden="true" size={14} />
+                  </a>
+                ))}
+              </div>
+            ) : null}
           </article>
         ))}
       </div>
